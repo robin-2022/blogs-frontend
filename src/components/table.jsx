@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-const Table = ({ images, deleteBlog, abrirCerrarModal, getBlogId }) => {
+const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
   return (
     <div>
       <table className="table">
@@ -28,14 +28,14 @@ const Table = ({ images, deleteBlog, abrirCerrarModal, getBlogId }) => {
                   className="delete"
                   onClick={() => deleteBlog(image._id)}
                 >
-                  <i class="bi bi-trash"></i>
+                  <i className="bi bi-trash"></i>
                 </button>
 
                 <button
                   className="edit"
                   onClick={() => abrirCerrarModal("edit")}
                 >
-                  <i class="bi bi-pencil-square"></i>
+                  <i className="bi bi-pencil-square"></i>
                 </button>
               </td>
             </tr>

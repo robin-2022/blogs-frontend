@@ -65,11 +65,14 @@ const LoginPage = () => {
 
   //LOGIN
   const login = async (e) => {
-    const response = await fetch("http://localhost:5000/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      "blog-backend-production-9b56.up.railway.app/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
     if (response.ok) {
       router.push("/");

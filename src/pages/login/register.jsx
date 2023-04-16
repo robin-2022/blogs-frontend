@@ -66,11 +66,14 @@ const RegisterPage = () => {
 
   //SAVE USERS
   const StoreUsers = async (e) => {
-    await axios.post("http://localhost:5000/auth/signup", {
-      name: name,
-      email: email,
-      password: password,
-    });
+    await axios.post(
+      "blog-backend-production-9b56.up.railway.app/auth/signup",
+      {
+        name: name,
+        email: email,
+        password: password,
+      }
+    );
     handlerResetForm();
     alert("Usuerio Registrado Correctamente");
   };
