@@ -34,7 +34,7 @@ const Index = () => {
       </header>
       <div className="post">
         <div>
-          <Image src="/next.png" alt="" width={700} height={300} />
+          <Image src="/next.png" alt="" width={600} height={300} />
         </div>
         <div className="text">
           <h2>Next.js vs React</h2>
@@ -52,7 +52,7 @@ const Index = () => {
       </div>
       <div className="card-grid">
         <div className="card">
-          <Image src="/card1.jpg" alt="" width={400} height={150} />
+          <Image src="/card1.jpg" alt="" width={260} height={150} />
           <h2>The create react-app dead</h2>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas
@@ -73,7 +73,7 @@ const Index = () => {
           </div>
         </div>
         <div className="card">
-          <Image src="/card2.jpg" alt="" width={400} height={150} />
+          <Image src="/card2.jpg" alt="" width={340} height={150} />
           <h2>React Components</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
@@ -94,7 +94,7 @@ const Index = () => {
           </div>
         </div>
         <div className="card">
-          <Image src="/card3.jpg" alt="" width={400} height={150} />
+          <Image src="/card3.jpg" alt="" width={340} height={150} />
           <h2>Best Practices for Code Review</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
@@ -117,7 +117,7 @@ const Index = () => {
       </div>
       <div className="card-grid">
         <div className="card">
-          <Image src="/card1.jpg" alt="" width={400} height={150} />
+          <Image src="/card1.jpg" alt="" width={340} height={150} />
           <h2>The create react-app dead</h2>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas
@@ -138,7 +138,7 @@ const Index = () => {
           </div>
         </div>
         <div className="card">
-          <Image src="/card2.jpg" alt="" width={400} height={150} />
+          <Image src="/card2.jpg" alt="" width={340} height={150} />
           <h2>React Components</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
@@ -159,7 +159,7 @@ const Index = () => {
           </div>
         </div>
         <div className="card">
-          <Image src="/card3.jpg" alt="" width={400} height={150} />
+          <Image src="/card3.jpg" alt="" width={340} height={150} />
           <h2>Best Practices for Code Review</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
