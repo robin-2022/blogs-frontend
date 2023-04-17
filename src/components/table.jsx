@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
   return (
@@ -21,7 +21,12 @@ const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
               <td>{image.title}</td>
               <td>{image.description}</td>
               <td>
-                <img accept="image/*" src={image.filename} alt="" width="80" />
+                <Image
+                  accept="image/*"
+                  src={image.filename}
+                  alt=""
+                  width="80"
+                />
               </td>
               <td width="10%">
                 <button
