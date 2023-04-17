@@ -18,9 +18,9 @@ const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
           {images.map((image) => (
             <tr key={image.id}>
               <th scope="row"></th>
-              <td width="30%">{image.title}</td>
+              <td width="25%">{image.title}</td>
               <td width="30%">{image.description}</td>
-              <td width="30%">
+              <td width="25%">
                 <Image
                   accept="image/*"
                   src={image.filename}
@@ -28,7 +28,7 @@ const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
                   width="80"
                 />
               </td>
-              <td width="10%">
+              <td width="20%">
                 <button
                   className="delete"
                   onClick={() => deleteBlog(image._id)}
