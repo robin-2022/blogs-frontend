@@ -36,13 +36,11 @@ const Myblog = () => {
   // procedimiento para guardar imagenes
 
   // procedimiento para guardar datos
-
   const [Image, setImages] = useState(null);
   const store = async (e) => {
     e.preventDefault();
     const result = await uploadFile(Image);
     console.log(result);
-
     await axios.post(
       "https://blog-backend-production-9b56.up.railway.app/images/upload",
       {
@@ -55,7 +53,6 @@ const Myblog = () => {
     abrirCerrarModal(false);
     GetImage();
   };
-
   const deleteBlog = async (imageID) => {
     await axios.delete(
       `https://blog-backend-production-9b56.up.railway.app/images/delete/${imageID}`
