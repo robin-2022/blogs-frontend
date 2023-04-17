@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UseForm from "@/src/hooks/UseForm";
 import Link from "next/link";
+
 import {
   Grid,
   Container,
@@ -64,20 +65,46 @@ const RegisterPage = () => {
   });
   const { name, email, password } = form;
 
-  //SAVE USERS
-  const StoreUsers = async (e) => {
-    await axios.post(
-      "https://blog-backend-production-9b56.up.railway.app/auth/signup",
-      {
-        name: name,
-        email: email,
-        password: password,
-      }
-    );
-    handlerResetForm();
-    alert("Usuerio Registrado Correctamente");
+  //// VALIDACIONES/////////
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let errors = {};
+    if (!values.name.trim()) {
+      errors.name = "El nombre es requerido";
+    }
+    if (!values.email) {
+      errors.email = "El correo electrónico es requerido";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      errors.email = "El correo electrónico es inválido";
+    }
+    if (!values.password) {
+      errors.password = "La contraseña es requerida";
+    } else if (values.password.length < 6) {
+      errors.password = "La contraseña debe tener al menos 6 caracteres";
+    }
+    setErrors(errors);
+    return errors;
   };
 
+  //SAVE USERS
+
+  const StoreUsers = async (e) => {
+    const errors = validate();
+    if (Object.keys(errors).length === 0) {
+      await axios.post(
+        "https://blog-backend-production-9b56.up.railway.app/auth/signup",
+        {
+          name: name,
+          email: email,
+          password: password,
+        }
+      );
+      handlerResetForm();
+      alert("Usuerio Registrado Correctamente");
+    }
+  };
   const classes = useStyles();
 
   return (
