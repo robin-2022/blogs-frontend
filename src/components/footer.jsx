@@ -20,7 +20,7 @@ const Footer = () => {
             Looking for an experienced frontend developer to build your web app
             or ship your software product? To start an initial chat, just drop
             me an email at <a href="">robinlaor@gmail.com</a> or use the
-            <a href="/contact">form on the contact page</a>.
+            <Link href="/contact">form on the contact page</Link>
           </p>
         </div>
       </div>
