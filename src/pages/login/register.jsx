@@ -67,7 +67,7 @@ const RegisterPage = () => {
   //SAVE USERS
   const StoreUsers = async (e) => {
     await axios.post(
-      "blog-backend-production-9b56.up.railway.app/auth/signup",
+      "https://blog-backend-production-9b56.up.railway.app/auth/signup",
       {
         name: name,
         email: email,

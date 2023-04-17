@@ -4,6 +4,13 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
     target: "serverless",
+    images: {
+      domains: [
+        'images.unsplash.com',
+        'firebase.google.com',
+
+      ],
+    }
 },
 
 }
