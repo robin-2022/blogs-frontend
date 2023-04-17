@@ -66,7 +66,7 @@ const LoginPage = () => {
   //LOGIN
   const login = async (e) => {
     const response = await fetch(
-      "blog-backend-production-9b56.up.railway.app/login",
+      "blog-backend-production-9b56.up.railway.app/auth/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
