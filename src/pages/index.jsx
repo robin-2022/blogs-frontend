@@ -138,7 +138,7 @@ const Index = () => {
           </div>
         </div>
         <div className="card">
-          <img src="/card2.jpg" alt="" width={400} height={150} />
+          <Image src="/card2.jpg" alt="" width={400} height={150} />
           <h2>React Components</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum

@@ -1,5 +1,7 @@
 import Container from "../components/container";
 import Link from "next/link";
+import Image from "next/image";
+
 const Contact = () => {
   return (
     <Container>
@@ -7,7 +9,7 @@ const Contact = () => {
         <h1>Contact</h1>
       </div>
       <div className="img2">
-        <img
+        <Image
           src="/programador.jpg"
           alt=""
           width={100}
@@ -16,7 +18,7 @@ const Contact = () => {
         />
         <div className="cardMe">
           <p>
-            I'm currently taking on freelance work. If you are interested in
+            Im currently taking on freelance work. If you are interested in
             hiring me for your project please use the form below to get in
             touch. Want to know how I work and what I can offer? Check out my
             project case studies and resume. <br />
