@@ -29,7 +29,7 @@ const Myblog = () => {
 
   const GetImage = async () => {
     const res = await axios.get(
-      "blog-backend-production-9b56.up.railway.app/images/"
+      "https://blog-backend-production-9b56.up.railway.app/images"
     );
     setImage(res.data.images);
   };
@@ -44,7 +44,7 @@ const Myblog = () => {
     console.log(result);
 
     await axios.post(
-      "blog-backend-production-9b56.up.railway.app/images/upload",
+      "https://blog-backend-production-9b56.up.railway.app/images/upload",
       {
         title: title,
         description: description,
@@ -58,7 +58,7 @@ const Myblog = () => {
 
   const deleteBlog = async (imageID) => {
     await axios.delete(
-      `blog-backend-production-9b56.up.railway.app/images/delete/${imageID}`
+      `https://blog-backend-production-9b56.up.railway.app/images/delete/${imageID}`
     );
     GetImage();
   };
