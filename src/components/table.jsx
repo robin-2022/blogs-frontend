@@ -18,9 +18,9 @@ const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
           {images.map((image) => (
             <tr key={image.id}>
               <th scope="row"></th>
-              <td>{image.title}</td>
-              <td>{image.description}</td>
-              <td>
+              <td width="30%">{image.title}</td>
+              <td width="30%">{image.description}</td>
+              <td width="30%">
                 <Image
                   accept="image/*"
                   src={image.filename}
