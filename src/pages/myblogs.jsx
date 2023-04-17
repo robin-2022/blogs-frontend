@@ -29,7 +29,7 @@ const Myblog = () => {
 
   const GetImage = async () => {
     const res = await axios.get(
-      "https://blog-backend-production-9b56.up.railway.app//images"
+      "https://blog-backend-production-9b56.up.railway.app/images"
     );
     setImage(res.data.images);
   };
