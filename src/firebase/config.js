@@ -19,9 +19,9 @@ export const storage = getStorage(app)
 
 
 export async function uploadFile(file){
-    const storageRef = ref(storage, v4())
-    await uploadBytes(storageRef, file)
-    const UrlImage = await getDownloadURL(storageRef);
-    return UrlImage
+  const storageRef = ref(storage, v4())
+  await uploadBytes(storageRef, file)
+  const UrlImage = await getDownloadURL(storageRef, { alt: "media" });
+  return UrlImage
 }
 
