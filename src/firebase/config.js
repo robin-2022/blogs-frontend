@@ -21,7 +21,7 @@ export const storage = getStorage(app)
 export async function uploadFile(file){
     const storageRef = ref(storage, v4())
     await uploadBytes(storageRef, file)
-    const url = await getDownloadURL(storageRef);
-    return url
+    const UrlImage = await getDownloadURL(storageRef);
+    return UrlImage
 }
 
