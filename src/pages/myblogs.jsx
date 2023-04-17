@@ -28,7 +28,9 @@ const Myblog = () => {
   }, []);
 
   const GetImage = async () => {
-    const res = await axios.get("http://localhost:5000/images/");
+    const res = await axios.get(
+      "blog-backend-production-9b56.up.railway.app/images/"
+    );
     setImage(res.data.images);
   };
   // procedimiento para guardar imagenes
@@ -41,18 +43,23 @@ const Myblog = () => {
     const result = await uploadFile(Image);
     console.log(result);
 
-    await axios.post("http://localhost:5000/images/upload", {
-      title: title,
-      description: description,
-      filename: result,
-    });
+    await axios.post(
+      "blog-backend-production-9b56.up.railway.app/images/upload",
+      {
+        title: title,
+        description: description,
+        filename: result,
+      }
+    );
     handlerResetForm();
     abrirCerrarModal(false);
     GetImage();
   };
 
   const deleteBlog = async (imageID) => {
-    await axios.delete(`http://localhost:5000/images/delete/${imageID}`);
+    await axios.delete(
+      `blog-backend-production-9b56.up.railway.app/images/delete/${imageID}`
+    );
     GetImage();
   };
 
