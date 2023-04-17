@@ -6,11 +6,10 @@ const nextConfig = {
     target: "serverless",
     images: {
       domains: [
-        'images.unsplash.com',
-        'firebase.google.com',
-
+        "images.unsplash.com",
+        "storage.googleapis.com", // Dominio de Firebase para imágenes en la nube.
       ],
-    }
+    },
 },
 
 }
