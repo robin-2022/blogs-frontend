@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
     <div>
       <div className="footer">
         <div className="imgFooter">
-          <img
+          <Image
             src="/programador.jpg"
             alt=""
             width={90}
