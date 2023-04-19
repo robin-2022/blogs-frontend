@@ -27,7 +27,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link className={style.loguot} href="./login/login">
+          <Link className={style.loguot} href="./auth/login">
             <p>LOG OUT</p>
           </Link>
         </li>

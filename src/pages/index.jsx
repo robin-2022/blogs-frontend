@@ -1,188 +1,160 @@
-import Footer from "@/src/components/footer";
-import Container from "../components/container";
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
-const Index = () => {
+import UseForm from "@/src/hooks/UseForm";
+import { useRouter } from "next/router";
+import {
+  Grid,
+  Container,
+  Paper,
+  Avatar,
+  Typography,
+  TextField,
+  Button,
+  CssBaseline,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { LockOutlined as LockOutlinedIcon } from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+  },
+  container: {
+    opacity: "0.8",
+    height: "80%",
+    marginTop: theme.spacing(10),
+    [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
+      marginTop: 0,
+      width: "100%",
+      height: "100%",
+    },
+  },
+  div: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+  },
+
+  button2: {
+    textDecoration: "none",
+  },
+  btn: {
+    marginTop: "20px",
+  },
+}));
+
+const LoginPage = () => {
+  const router = useRouter();
+  const [form, handlerChangeForm, handlerResetForm] = UseForm({
+    email: "",
+    password: "",
+  });
+  const { email, password } = form;
+
+  //LOGIN
+  const login = async (e) => {
+    const response = await fetch(
+      "https://blog-backend-production-9b56.up.railway.app/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+
+    if (response.ok) {
+      router.push("/");
+    } else {
+      const errorData = await response.json();
+    }
+    handlerResetForm();
+  };
+
+  const classes = useStyles();
+
+  const onSubmit = () => {};
+
   return (
-    <Container>
-      <header className="header">
-        <div className="img">
-          <Image
-            src="/programador.jpg"
-            alt=""
-            width={150}
-            height={150}
-            className="rounded-circle"
-          />
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Container
+        component={Paper}
+        elevation={5}
+        maxWidth="xs"
+        className={classes.container}
+      >
+        <div className={classes.div} onSubmit={login}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign In
+          </Typography>
+          <form className={classes.form}>
+            <TextField
+              fullWidth
+              autoFocus
+              color="primary"
+              margin="normal"
+              variant="outlined"
+              label="Email"
+              name="email"
+              value={email}
+              onChange={handlerChangeForm}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              color="primary"
+              margin="normal"
+              variant="outlined"
+              label="Password"
+              name="password"
+              value={password}
+              onChange={handlerChangeForm}
+            />
+            <a href="" className="forgotPassword">
+              ¿Forgot your password?
+            </a>
+
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.btn}
+              onClick={() => login()}
+            >
+              Sign In
+            </Button>
+
+            <Link className={classes.button2} href="/auth/register">
+              <Button
+                fullWidth
+                variant="contained"
+                color="secondary"
+                onClick={() => onSubmit()}
+                className={classes.btn}
+              >
+                Register
+              </Button>
+            </Link>
+          </form>
         </div>
-        <div className="p">
-          <h1>Robin&apos;s blog </h1>
-          <p>
-            I am a systems engineering student and this is my blog. <br /> You
-            can follow me via the various channels below:
-          </p>
-          <Link href="/">
-            <i className="bi bi-whatsapp"></i>
-          </Link>
-          <Link href="/">
-            <i className="bi bi-facebook"></i>
-          </Link>
-          <Link href="/">
-            <i className="bi bi-github"></i>
-          </Link>
-        </div>
-      </header>
-      <div className="post">
-        <div>
-          <Image src="/next.png" alt="" width={600} height={300} />
-        </div>
-        <div className="text">
-          <h2>Next.js vs React</h2>
-          <p>
-            Next.js and React are two of the most popular front-end web
-            development frameworks. And the debate between Next.js vs React has
-            been around for a while. In short, to understand next.js vs react,
-            Next.js is a simplified development environment built on top of
-            React...
-          </p>
-          <button type="button" class="btn btn-primary">
-            Read more
-          </button>
-        </div>
-      </div>
-      <div className="card-grid">
-        <div className="card">
-          <Image src="/card1.jpg" alt="" width={260} height={150} />
-          <h2>The create react-app dead</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas
-            dignissimos in possimus suscipit eveniet. Voluptates, voluptas
-            aperiam autem iusto tempora, vero non officiis sequi ipsam veniam
-            architecto deserunt ea voluptatem.
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <Image src="/card2.jpg" alt="" width={340} height={150} />
-          <h2>React Components</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-            obcaecati magnam alias incidunt, iste doloribus a. Eveniet, iure.
-            Non harum asperiores mollitia dignissimos fuga recusandae cum
-            tenetur veritatis ea nulla!
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <Image src="/card3.jpg" alt="" width={340} height={150} />
-          <h2>Best Practices for Code Review</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
-            doloremque dolorum fugiat similique velit, laudantium quae enim nemo
-            et error reprehenderit cumque esse voluptatem vero molestias
-            repudiandae ducimus pariatur? Fugit!
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="card-grid">
-        <div className="card">
-          <Image src="/card1.jpg" alt="" width={340} height={150} />
-          <h2>The create react-app dead</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas
-            dignissimos in possimus suscipit eveniet. Voluptates, voluptas
-            aperiam autem iusto tempora, vero non officiis sequi ipsam veniam
-            architecto deserunt ea voluptatem.
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <Image src="/card2.jpg" alt="" width={340} height={150} />
-          <h2>React Components</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-            obcaecati magnam alias incidunt, iste doloribus a. Eveniet, iure.
-            Non harum asperiores mollitia dignissimos fuga recusandae cum
-            tenetur veritatis ea nulla!
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <Image src="/card3.jpg" alt="" width={340} height={150} />
-          <h2>Best Practices for Code Review</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
-            doloremque dolorum fugiat similique velit, laudantium quae enim nemo
-            et error reprehenderit cumque esse voluptatem vero molestias
-            repudiandae ducimus pariatur? Fugit!
-          </p>
-          <div className="date">
-            <div className="clock">
-              <i class="bi bi-clock"></i> April 18,2023
-            </div>
-            <div>
-              <i class="bi bi-chat-dots"></i>
-              <Link className="comments" href="/">
-                12 comments
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </Container>
+      </Container>
+    </Grid>
   );
 };
 
-export default Index;
+export default LoginPage;
