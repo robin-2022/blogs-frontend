@@ -79,7 +79,7 @@ const RegisterPage = () => {
       }
     );
     handlerResetForm();
-    alert("Usuerio Registrado Correctamente");
+    alert("Usuario Registrado Correctamente");
   };
   const classes = useStyles();
 
@@ -132,7 +132,7 @@ const RegisterPage = () => {
               value={password}
               onChange={handlerChangeForm}
             />
-            <Link href="/login/login">
+            <Link href="/">
               <Button
                 fullWidth
                 variant="contained"
