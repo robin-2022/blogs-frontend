@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import UseForm from "@/src/hooks/UseForm";
+import validator from "validator";
 import { useRouter } from "next/router";
 import {
   Grid,
@@ -57,34 +57,52 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginPage = () => {
   const router = useRouter();
-  const [form, handlerChangeForm, handlerResetForm] = UseForm({
-    email: "",
-    password: "",
-  });
-  const { email, password } = form;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   //LOGIN
   const login = async (e) => {
-    const response = await fetch(
-      "https://blog-backend-production-9b56.up.railway.app/auth/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      }
-    );
-
-    if (response.ok) {
-      router.push("/home");
+    // validate email
+    if (!email) {
+      setEmailError("Enter your email please");
     } else {
-      const errorData = await response.json();
+      if (!validator.isEmail(email)) {
+        setEmailError("Enter a valid email");
+      }
     }
-    handlerResetForm();
+    // validate password
+
+    if (!password) {
+      setPasswordError("Enter your password please");
+    } else {
+      setPasswordError("");
+    }
+    if (!emailError && !passwordError) {
+      try {
+        const response = await fetch(
+          "https://blog-backend-production-9b56.up.railway.app/auth/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          }
+        );
+        if (response.ok) {
+          router.push("/home");
+        } else {
+          setSubmitError("Wrong email or password");
+        }
+      } catch (error) {
+        submitError("se produjo un error al iniciar sesion");
+        console.log(error);
+      }
+    }
   };
-
   const classes = useStyles();
-
-  const onSubmit = () => {};
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -112,8 +130,10 @@ const LoginPage = () => {
               label="Email"
               name="email"
               value={email}
-              onChange={handlerChangeForm}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            {emailError && <p className="text-danger">{emailError}</p>}
+            {submitError && <p className="text-danger">{submitError}</p>}
             <TextField
               fullWidth
               type="password"
@@ -123,8 +143,9 @@ const LoginPage = () => {
               label="Password"
               name="password"
               value={password}
-              onChange={handlerChangeForm}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {passwordError && <p className="text-danger">{passwordError}</p>}
             <a href="" className="forgotPassword">
               ¿Forgot your password?
             </a>
