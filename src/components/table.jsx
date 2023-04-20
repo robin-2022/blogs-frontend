@@ -25,8 +25,8 @@ const Table = ({ images, deleteBlog, abrirCerrarModal }) => {
                   accept="image/*"
                   src={image.filename}
                   alt=""
-                  height="20"
-                  width="80"
+                  height="100"
+                  width="100"
                 />
               </td>
               <td width="20%">
