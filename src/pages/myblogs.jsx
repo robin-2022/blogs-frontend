@@ -16,7 +16,8 @@ const Myblog = () => {
 
   const [modalAdd, setModalAdd] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
-
+  const [titleError, setTitleError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
   const abrirCerrarModal = (caso) => {
     caso === "edit" ? setModalEdit(!modalEdit) : setModalAdd(!modalAdd);
   };
@@ -39,6 +40,9 @@ const Myblog = () => {
   const [Image, setImages] = useState(null);
   const store = async (e) => {
     e.preventDefault();
+    // if (!title) {
+    //   setTitleError("Enter a title");
+    // }
     const result = await uploadFile(Image);
     console.log(result);
     await axios.post(
