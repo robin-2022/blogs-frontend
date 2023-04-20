@@ -95,6 +95,7 @@ const LoginPage = () => {
           router.push("/home");
         } else {
           setSubmitError("Wrong email or password");
+          return;
         }
       } catch (error) {
         submitError("se produjo un error al iniciar sesion");

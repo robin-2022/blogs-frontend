@@ -18,6 +18,8 @@ const Myblog = () => {
   const [modalEdit, setModalEdit] = useState(false);
   const [titleError, setTitleError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+
   const abrirCerrarModal = (caso) => {
     caso === "edit" ? setModalEdit(!modalEdit) : setModalAdd(!modalAdd);
   };
@@ -40,23 +42,33 @@ const Myblog = () => {
   const [Image, setImages] = useState(null);
   const store = async (e) => {
     e.preventDefault();
-    // if (!title) {
-    //   setTitleError("Enter a title");
-    // }
-    const result = await uploadFile(Image);
-    console.log(result);
-    await axios.post(
-      "https://blog-backend-production-9b56.up.railway.app/blog/upload",
-      {
-        title: title,
-        description: description,
-        filename: result,
+    if (!title) {
+      setTitleError("Enter a title");
+    }
+    if (!description) {
+      setDescriptionError("Enter a description");
+    }
+    if (title && description) {
+      try {
+        const result = await uploadFile(Image);
+        const response = await axios.post(
+          "https://blog-backend-production-9b56.up.railway.app/blog/upload",
+          {
+            title: title,
+            description: description,
+            filename: result,
+          }
+        );
+        handlerResetForm();
+        abrirCerrarModal(false);
+        GetImage();
+      } catch (error) {
+        submitError("se produjo un error al iniciar sesion");
+        console.log(error);
       }
-    );
-    handlerResetForm();
-    abrirCerrarModal(false);
-    GetImage();
+    }
   };
+
   const deleteBlog = async (imageID) => {
     await axios.delete(
       `https://blog-backend-production-9b56.up.railway.app/blog/delete/${imageID}`
@@ -97,6 +109,7 @@ const Myblog = () => {
                   onChange={handlerChangeForm}
                 />
               </label>
+              {titleError && <p className="text-danger">{titleError}</p>}
               <br />
               <br />
               <label> Select Image</label>
@@ -119,6 +132,9 @@ const Myblog = () => {
                   placeholder="Enter the description"
                 ></textarea>
               </label>
+              {descriptionError && (
+                <p className="text-danger">{descriptionError}</p>
+              )}
               <br />
               <br />
               <button className="modalbutton3">Add</button>
